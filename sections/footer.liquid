@@ -1,0 +1,183 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-text">{{ shop.name | default: 'Amore Cake' }}</span>
+        </div>
+        <p class="footer-about">
+          {{ section.settings.about_text | default: 'Handcrafted cakes made with love for every celebration. We believe every milestone deserves a perfect cake.' }}
+        </p>
+        <div class="footer-social">
+          {%- if section.settings.instagram_url != blank -%}
+            <a href="{{ section.settings.instagram_url }}" class="social-link" aria-label="Instagram" rel="noopener noreferrer" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.facebook_url != blank -%}
+            <a href="{{ section.settings.facebook_url }}" class="social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.whatsapp_url != blank -%}
+            <a href="{{ section.settings.whatsapp_url }}" class="social-link" aria-label="WhatsApp" rel="noopener noreferrer" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links" role="list">
+          {%- for link in linklists[section.settings.footer_menu_1].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="{{ routes.root_url }}">Home</a></li>
+            <li><a href="{{ routes.collections_url }}">Our Cakes</a></li>
+            <li><a href="/pages/custom-cakes">Custom Orders</a></li>
+            <li><a href="/pages/about">About Us</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div>
+        <h3 class="footer-heading">Cake Categories</h3>
+        <ul class="footer-links" role="list">
+          {%- for link in linklists[section.settings.footer_menu_2].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- else -%}
+            <li><a href="/collections/birthday-cakes">Birthday Cakes</a></li>
+            <li><a href="/collections/wedding-cakes">Wedding Cakes</a></li>
+            <li><a href="/collections/cupcakes">Cupcakes</a></li>
+            <li><a href="/collections/custom-cakes">Custom Cakes</a></li>
+            <li><a href="/collections/seasonal">Seasonal Specials</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="footer-heading">Get In Touch</h3>
+        <div class="footer-contact">
+          {%- if section.settings.contact_address != blank -%}
+            <div class="contact-item">
+              <span class="icon" aria-hidden="true">📍</span>
+              <span>{{ section.settings.contact_address }}</span>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.contact_phone != blank -%}
+            <div class="contact-item">
+              <span class="icon" aria-hidden="true">📞</span>
+              <a href="tel:{{ section.settings.contact_phone | remove: ' ' | remove: '-' }}">{{ section.settings.contact_phone }}</a>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.contact_email != blank -%}
+            <div class="contact-item">
+              <span class="icon" aria-hidden="true">✉️</span>
+              <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.contact_hours != blank -%}
+            <div class="contact-item">
+              <span class="icon" aria-hidden="true">🕐</span>
+              <span>{{ section.settings.contact_hours }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div><!-- /.footer-grid -->
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      <div class="footer-bottom-links" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+        <a href="/policies/privacy-policy">Privacy Policy</a>
+        <a href="/policies/refund-policy">Refund Policy</a>
+        <a href="/policies/terms-of-service">Terms of Service</a>
+      </div>
+      <div class="payment-icons" aria-label="Accepted payment methods">
+        <span class="payment-icon">VISA</span>
+        <span class="payment-icon">MC</span>
+        <span class="payment-icon">UPI</span>
+        <span class="payment-icon">COD</span>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "about_text",
+      "label": "About text",
+      "default": "Handcrafted cakes made with love for every celebration. We believe every milestone deserves a perfect cake."
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_1",
+      "label": "Quick Links menu",
+      "default": "footer"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_2",
+      "label": "Categories menu",
+      "default": "footer"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_url",
+      "label": "WhatsApp URL"
+    },
+    {
+      "type": "text",
+      "id": "contact_address",
+      "label": "Address"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Email"
+    },
+    {
+      "type": "text",
+      "id": "contact_hours",
+      "label": "Business hours",
+      "default": "Mon–Sat: 9am – 8pm"
+    }
+  ]
+}
+{% endschema %}

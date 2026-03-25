@@ -1,0 +1,147 @@
+{%- liquid
+  assign heading = section.settings.heading | default: 'Our Bestsellers'
+  assign subheading = section.settings.subheading
+  assign collection_handle = section.settings.collection | default: 'all'
+  assign product_limit = section.settings.product_limit | default: 4
+  assign show_view_all = section.settings.show_view_all
+  assign collection = collections[collection_handle]
+-%}
+
+<section class="section-padding featured-collection-section" id="featured-collection">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;" data-reveal>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+      <h2 class="section-title">{{ heading }}</h2>
+      {%- if subheading != blank -%}
+        <p class="section-description mt-2">{{ subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Category Filter Tabs (from collections) -->
+    {%- if section.settings.show_category_tabs -%}
+      <div class="category-tabs" style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem;">
+        <button class="btn btn--primary btn--sm category-tab active" data-collection="all">All</button>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category_tab' -%}
+            <button
+              class="btn btn--outline btn--sm category-tab"
+              data-collection="{{ block.settings.collection_handle }}"
+            >{{ block.settings.label }}</button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+      {%- if collection != blank -%}
+        {%- for product in collection.products limit: product_limit -%}
+          {%- render 'product-card', product: product -%}
+        {%- else -%}
+          {%- for i in (1..product_limit) -%}
+            {%- render 'product-card', product: nil, placeholder_index: i -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..product_limit) -%}
+          {%- render 'product-card', product: nil, placeholder_index: i -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <!-- View All CTA -->
+    {%- if show_view_all -%}
+      <div class="text-center mt-5">
+        <a href="{{ collection.url | default: routes.collections_url }}" class="btn btn--outline btn--lg">
+          {{ section.settings.view_all_label | default: 'View All Cakes' }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "default": "Fresh From the Oven"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Our Bestsellers"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Section description",
+      "default": "Explore our most-loved cakes, baked fresh every day with premium ingredients."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to display"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Number of products",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View All' button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View All button label",
+      "default": "View All Cakes"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category_tabs",
+      "label": "Show category filter tabs",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_tab",
+      "name": "Category Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Birthday"
+        },
+        {
+          "type": "text",
+          "id": "collection_handle",
+          "label": "Collection handle",
+          "default": "birthday-cakes"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

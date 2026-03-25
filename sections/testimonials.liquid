@@ -1,0 +1,195 @@
+<section class="testimonials-section section-padding" id="testimonials">
+  <div class="container">
+    <div class="text-center" data-reveal>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+      <h2 class="section-title">{{ section.settings.heading | default: 'What Our Customers Say' }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="section-description mt-2">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="testimonials-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          <div class="testimonial-card" {{ block.shopify_attributes }} data-reveal>
+            <!-- Stars -->
+            <div style="margin-bottom:0.75rem;" aria-label="{{ block.settings.rating }} out of 5 stars">
+              <span class="stars" aria-hidden="true">
+                {%- assign rating = block.settings.rating | default: 5 | times: 1 -%}
+                {%- for i in (1..5) -%}
+                  {%- if i <= rating -%}★{%- else -%}☆{%- endif -%}
+                {%- endfor -%}
+              </span>
+            </div>
+
+            <p class="testimonial-text">"{{ block.settings.review }}"</p>
+
+            <div class="testimonial-author">
+              {%- if block.settings.avatar != blank -%}
+                <img
+                  src="{{ block.settings.avatar | image_url: width: 88 }}"
+                  alt="{{ block.settings.name }}"
+                  class="testimonial-avatar"
+                  width="44"
+                  height="44"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="testimonial-avatar" aria-hidden="true">
+                  {{ block.settings.name | slice: 0, 1 | upcase }}
+                </div>
+              {%- endif -%}
+              <div>
+                <p class="testimonial-name">{{ block.settings.name }}</p>
+                {%- if block.settings.event != blank -%}
+                  <p class="testimonial-event">{{ block.settings.event }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Trust indicators -->
+    {%- if section.settings.show_trust_bar -%}
+      <div style="display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid var(--color-border);">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-heading);font-size:2.5rem;color:var(--color-primary);">4.9</div>
+          <div style="font-size:0.8rem;color:var(--color-text-light);margin-top:0.25rem;">Average Rating</div>
+          <div class="stars" style="font-size:0.9rem;" aria-hidden="true">★★★★★</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-heading);font-size:2.5rem;color:var(--color-primary);">{{ section.settings.total_reviews | default: '200+' }}</div>
+          <div style="font-size:0.8rem;color:var(--color-text-light);margin-top:0.25rem;">Happy Reviews</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-heading);font-size:2.5rem;color:var(--color-primary);">{{ section.settings.total_orders | default: '1000+' }}</div>
+          <div style="font-size:0.8rem;color:var(--color-text-light);margin-top:0.25rem;">Orders Delivered</div>
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "default": "Customer Love"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Section description",
+      "default": "Real reviews from real customers who trusted us with their special moments."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_bar",
+      "label": "Show trust statistics bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "total_reviews",
+      "label": "Total reviews count",
+      "default": "200+"
+    },
+    {
+      "type": "text",
+      "id": "total_orders",
+      "label": "Total orders count",
+      "default": "1000+"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Priya Sharma"
+        },
+        {
+          "type": "text",
+          "id": "event",
+          "label": "Occasion / event",
+          "default": "Birthday Cake"
+        },
+        {
+          "type": "textarea",
+          "id": "review",
+          "label": "Review text",
+          "default": "The cake was absolutely stunning and delicious! Everyone at the party was asking where we got it from. Amore Cake never disappoints!"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star rating",
+          "default": 5
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Customer photo (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Priya Sharma",
+            "event": "Birthday Party",
+            "review": "The cake was absolutely stunning and delicious! Everyone at the party was asking where we got it from. Amore Cake never disappoints!",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Rahul & Neha",
+            "event": "Wedding Cake",
+            "review": "We ordered our wedding cake from Amore and it was beyond our expectations. Beautiful design, incredible taste. Our guests were in awe!",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Anjali Gupta",
+            "event": "Custom Order",
+            "review": "Ordered a custom photo cake for my mom's 60th birthday. The attention to detail was amazing and it tasted divine. Will definitely order again!",
+            "rating": 5
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

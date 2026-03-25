@@ -1,0 +1,40 @@
+{%- comment -%}
+  Renders formatted price for a product.
+  Usage: {% render 'price', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign target = product
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1000
+  assign price_min = target.price_min
+  assign price_max = target.price_max
+  assign available = target.available | default: true
+-%}
+
+<div class="price__container">
+  {%- if available -%}
+    {%- if compare_at_price > price -%}
+      <span class="price price--on-sale">
+        <span class="visually-hidden">Sale price</span>
+        {{ price | money }}
+      </span>
+      <span class="price price--compare">
+        <span class="visually-hidden">Regular price</span>
+        {{ compare_at_price | money }}
+      </span>
+    {%- elsif price_min < price_max -%}
+      <span class="price">
+        <span class="visually-hidden">Price range</span>
+        {{ price_min | money }} – {{ price_max | money }}
+      </span>
+    {%- else -%}
+      <span class="price">
+        <span class="visually-hidden">Price</span>
+        {{ price | money }}
+      </span>
+    {%- endif -%}
+  {%- else -%}
+    <span class="price" style="color:var(--color-text-light);font-size:0.9rem;">Sold Out</span>
+  {%- endif -%}
+</div>

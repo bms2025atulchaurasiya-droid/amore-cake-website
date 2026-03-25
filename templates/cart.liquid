@@ -1,0 +1,163 @@
+<div class="cart-page">
+  <div class="container">
+    <h1 style="font-family:var(--font-heading);font-size:2rem;margin-bottom:2rem;">Your Cart</h1>
+
+    {%- if cart.item_count > 0 -%}
+      {%- form 'cart', cart -%}
+        <div class="cart-page__inner">
+
+          <!-- Cart Items -->
+          <div class="cart-items">
+            {%- for item in cart.items -%}
+              <div class="cart-item">
+
+                <!-- Image -->
+                <div class="cart-item__image">
+                  <a href="{{ item.url }}">
+                    {%- if item.image -%}
+                      <img
+                        src="{{ item.image | image_url: width: 180 }}"
+                        alt="{{ item.image.alt | default: item.title }}"
+                        width="90"
+                        height="90"
+                        loading="lazy"
+                      >
+                    {%- else -%}
+                      <img
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Crect fill='%23f9e4e9' width='90' height='90'/%3E%3Ctext fill='%23c9536a' font-size='36' text-anchor='middle' x='45' y='58'%3E🎂%3C/text%3E%3C/svg%3E"
+                        alt="{{ item.title }}"
+                        width="90"
+                        height="90"
+                      >
+                    {%- endif -%}
+                  </a>
+                </div>
+
+                <!-- Info -->
+                <div class="cart-item__info">
+                  <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>
+                  {%- unless item.variant.title == 'Default Title' -%}
+                    <p class="cart-item__variant">{{ item.variant.title }}</p>
+                  {%- endunless -%}
+                  <p class="cart-item__price">{{ item.price | money }}</p>
+                </div>
+
+                <!-- Quantity -->
+                <div class="quantity-selector" role="group" aria-label="Quantity for {{ item.product.title }}">
+                  <button class="qty-btn" data-action="minus" type="button" aria-label="Decrease quantity">−</button>
+                  <input
+                    class="qty-input"
+                    type="number"
+                    name="updates[{{ item.key }}]"
+                    value="{{ item.quantity }}"
+                    min="0"
+                    max="99"
+                    aria-label="Quantity"
+                  >
+                  <button class="qty-btn" data-action="plus" type="button" aria-label="Increase quantity">+</button>
+                </div>
+
+                <!-- Line price -->
+                <p style="font-weight:700;font-family:var(--font-heading);font-size:1.05rem;color:var(--color-primary);min-width:80px;text-align:right;">
+                  {{ item.line_price | money }}
+                </p>
+
+                <!-- Remove -->
+                <a
+                  href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0"
+                  aria-label="Remove {{ item.product.title }}"
+                  style="color:var(--color-text-light);font-size:1.1rem;padding:0.25rem;transition:color 0.2s;"
+                  onmouseover="this.style.color='var(--color-error)'"
+                  onmouseout="this.style.color='var(--color-text-light)'"
+                >✕</a>
+
+              </div>
+            {%- endfor -%}
+
+            <!-- Update Cart button -->
+            <button
+              type="submit"
+              name="update"
+              class="btn btn--outline"
+              style="align-self:flex-start;"
+            >Update Cart</button>
+          </div>
+
+          <!-- Order Summary -->
+          <aside class="cart-summary" aria-label="Order summary">
+            <h2 class="cart-summary__title">Order Summary</h2>
+
+            <div class="summary-row">
+              <span>Subtotal ({{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %})</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span style="color:var(--color-success);font-weight:600;">Calculated at checkout</span>
+            </div>
+
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <div class="summary-row" style="color:var(--color-success);">
+                  <span>Discount ({{ discount.title }})</span>
+                  <span>− {{ discount.total_allocated_amount | money }}</span>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+
+            <div class="summary-row summary-row--total">
+              <span>Total</span>
+              <span class="summary-total-price">{{ cart.total_price | money }}</span>
+            </div>
+
+            <!-- Discount Code -->
+            <div style="margin:1.25rem 0;display:flex;gap:0.5rem;">
+              <input
+                type="text"
+                name="discount"
+                placeholder="Discount code"
+                style="flex:1;padding:0.65rem 1rem;border:2px solid var(--color-border);border-radius:8px;font-size:0.85rem;outline:none;"
+              >
+              <button type="button" class="btn btn--outline btn--sm">Apply</button>
+            </div>
+
+            <button type="submit" name="checkout" class="btn btn--primary btn--full btn--lg">
+              Proceed to Checkout →
+            </button>
+
+            <a href="{{ routes.collections_url }}" class="btn btn--outline btn--full mt-2">
+              ← Continue Shopping
+            </a>
+
+            <!-- Trust badges -->
+            <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+              <div style="font-size:0.72rem;color:var(--color-text-light);display:flex;align-items:center;gap:0.3rem;">
+                <span>🔒</span> Secure Checkout
+              </div>
+              <div style="font-size:0.72rem;color:var(--color-text-light);display:flex;align-items:center;gap:0.3rem;">
+                <span>🚚</span> Fast Delivery
+              </div>
+              <div style="font-size:0.72rem;color:var(--color-text-light);display:flex;align-items:center;gap:0.3rem;">
+                <span>💯</span> Satisfaction Guarantee
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      {%- endform -%}
+
+    {%- else -%}
+      <!-- Empty Cart -->
+      <div class="text-center" style="padding:5rem 0;">
+        <div style="font-size:5rem;margin-bottom:1.5rem;" aria-hidden="true">🛒</div>
+        <h2 style="margin-bottom:1rem;">Your cart is empty</h2>
+        <p style="color:var(--color-text-light);margin-bottom:2rem;">
+          Looks like you haven't added any cakes yet. Let's fix that!
+        </p>
+        <a href="{{ routes.collections_url }}" class="btn btn--primary btn--lg">Shop Our Cakes</a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>

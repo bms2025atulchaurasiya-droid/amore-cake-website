@@ -1,0 +1,124 @@
+{%- liquid
+  assign placeholder_names = 'Birthday Bliss Cake,Wedding Dream Cake,Chocolate Heaven,Strawberry Cloud,Red Velvet Romance,Vanilla Dreamcake' | split: ','
+  assign placeholder_name = placeholder_names[placeholder_index | minus: 1] | default: 'Artisan Cake'
+  assign placeholder_prices = '1200,2500,950,1100,1350,800' | split: ','
+  assign placeholder_price = placeholder_prices[placeholder_index | minus: 1] | default: '1200'
+-%}
+
+<div class="product-card" data-reveal>
+  <div class="product-card__image-wrapper">
+
+    <!-- Badge -->
+    {%- if product != nil -%}
+      {%- if product.tags contains 'new' -%}
+        <span class="product-card__badge product-card__badge--new" aria-label="New">New</span>
+      {%- elsif product.tags contains 'bestseller' -%}
+        <span class="product-card__badge product-card__badge--bestseller" aria-label="Bestseller">Bestseller</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        <span class="product-card__badge product-card__badge--sale" aria-label="Sale">Sale</span>
+      {%- endif -%}
+    {%- else -%}
+      {%- assign badges = 'Bestseller,New,Sale' | split: ',' -%}
+      <span class="product-card__badge product-card__badge--bestseller">{{ badges[placeholder_index | modulo: 3] }}</span>
+    {%- endif -%}
+
+    <!-- Quick Action Buttons -->
+    <div class="product-card__quick-actions" aria-label="Quick actions">
+      <button
+        class="quick-action-btn"
+        data-action="wishlist"
+        aria-label="Add to wishlist"
+        title="Add to wishlist"
+      >♡</button>
+      {%- if product != nil -%}
+        <a
+          href="{{ product.url }}"
+          class="quick-action-btn"
+          aria-label="Quick view {{ product.title }}"
+          title="Quick view"
+        >👁</a>
+      {%- endif -%}
+    </div>
+
+    <!-- Product Image -->
+    <a href="{{ product.url | default: '#' }}" tabindex="-1" aria-hidden="true">
+      {%- if product != nil and product.featured_image != blank -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 400 }}"
+          srcset="{{ product.featured_image | image_url: width: 300 }} 300w,
+                  {{ product.featured_image | image_url: width: 400 }} 400w,
+                  {{ product.featured_image | image_url: width: 600 }} 600w"
+          sizes="(max-width: 480px) calc(50vw - 1.5rem), (max-width: 1024px) calc(33vw - 2rem), 280px"
+          alt="{{ product.featured_image.alt | default: product.title }}"
+          width="400"
+          height="400"
+          loading="lazy"
+        >
+      {%- else -%}
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect fill='%23f9e4e9' width='400' height='400'/%3E%3Ctext fill='%23c9536a' font-family='serif' font-size='80' text-anchor='middle' x='200' y='230'%3E🎂%3C/text%3E%3C/svg%3E"
+          alt="{{ placeholder_name }}"
+          width="400"
+          height="400"
+          loading="lazy"
+        >
+      {%- endif -%}
+    </a>
+
+  </div><!-- /.product-card__image-wrapper -->
+
+  <div class="product-card__info">
+
+    <!-- Category / Type -->
+    <span class="product-card__category">
+      {%- if product != nil -%}
+        {{ product.type | default: 'Artisan Cake' }}
+      {%- else -%}
+        Artisan Cake
+      {%- endif -%}
+    </span>
+
+    <!-- Title -->
+    <a href="{{ product.url | default: '#' }}" class="product-card__title">
+      {{ product.title | default: placeholder_name }}
+    </a>
+
+    <!-- Description -->
+    {%- if product != nil and product.description != blank -%}
+      <p class="product-card__description">{{ product.description | strip_html }}</p>
+    {%- endif -%}
+
+    <!-- Rating (static for demo; integrate with review app for live ratings) -->
+    <div class="product-card__rating" aria-label="5 out of 5 stars">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      {%- if product.metafields.reviews.rating_count != blank -%}
+        <span class="rating-count">({{ product.metafields.reviews.rating_count }})</span>
+      {%- endif -%}
+    </div>
+
+    <!-- Footer: Price + Add -->
+    <div class="product-card__footer">
+      <div class="product-card__price">
+        {%- if product != nil -%}
+          {%- render 'price', product: product -%}
+        {%- else -%}
+          <span class="price">₹{{ placeholder_price }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- if product != nil -%}
+        <button
+          type="button"
+          class="product-card__add-btn"
+          data-action="add-to-cart"
+          data-product-id="{{ product.variants.first.id }}"
+          aria-label="Add {{ product.title }} to cart"
+          title="Add to cart"
+        >+</button>
+      {%- else -%}
+        <button type="button" class="product-card__add-btn" aria-label="Add to cart" title="Add to cart">+</button>
+      {%- endif -%}
+    </div>
+
+  </div><!-- /.product-card__info -->
+</div>

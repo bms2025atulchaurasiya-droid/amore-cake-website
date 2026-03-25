@@ -1,0 +1,197 @@
+<section class="about-section section-padding" id="about">
+  <div class="container">
+    <div class="about-inner">
+
+      <!-- Image Side -->
+      <div class="about-image-wrapper" data-reveal>
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 600 }}"
+            srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                    {{ section.settings.image | image_url: width: 600 }} 600w"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            alt="{{ section.settings.image.alt | default: 'About Amore Cake' }}"
+            width="600"
+            height="750"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='750' viewBox='0 0 600 750'%3E%3Crect fill='%23f9e4e9' width='600' height='750'/%3E%3Ctext fill='%23c9536a' font-family='serif' font-size='100' text-anchor='middle' x='300' y='400'%3E🎂%3C/text%3E%3C/svg%3E"
+            alt="About Amore Cake"
+            width="600"
+            height="750"
+            loading="lazy"
+          >
+        {%- endif -%}
+
+        {%- if section.settings.show_experience_badge -%}
+          <div class="about-badge" aria-label="{{ section.settings.years_experience }} years of experience">
+            <span class="years">{{ section.settings.years_experience | default: '5' }}</span>
+            <span>Years of</span>
+            <span>Experience</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Text Side -->
+      <div class="about-text" data-reveal>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+        <h2 class="section-title">{{ section.settings.heading | default: 'Baked with Love Since 2019' }}</h2>
+        {%- if section.settings.description != blank -%}
+          <div class="about-description" style="color:var(--color-text-light);line-height:1.8;margin:1.25rem 0 2rem;">
+            {{ section.settings.description }}
+          </div>
+        {%- else -%}
+          <p style="color:var(--color-text-light);line-height:1.8;margin:1.25rem 0 2rem;">
+            At Amore Cake, we believe that every celebration deserves a beautiful, delicious cake. Founded with a passion for baking and an eye for design, we create custom cakes that tell your unique story.
+          </p>
+          <p style="color:var(--color-text-light);line-height:1.8;margin:0 0 2rem;">
+            Every cake is handcrafted using premium, locally sourced ingredients—no artificial preservatives, no shortcuts. Just pure, homemade goodness in every slice.
+          </p>
+        {%- endif -%}
+
+        <!-- Feature Grid -->
+        <div class="about-features">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <div class="about-feature" {{ block.shopify_attributes }}>
+                <div class="about-feature__icon" aria-hidden="true">{{ block.settings.icon | default: '✨' }}</div>
+                <div class="about-feature__title">{{ block.settings.title }}</div>
+                <div class="about-feature__desc">{{ block.settings.description }}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.cta_label != blank -%}
+          <a href="{{ section.settings.cta_url | default: '/pages/about' }}" class="btn btn--primary mt-4">
+            {{ section.settings.cta_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Us",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Baked with Love Since 2019"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_experience_badge",
+      "label": "Show experience badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "years_experience",
+      "label": "Years of experience",
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Learn More About Us"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "✨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature title",
+          "default": "Premium Quality"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Feature description",
+          "default": "Only the finest ingredients"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🌿",
+            "title": "Natural Ingredients",
+            "description": "No artificial flavours or preservatives"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "Custom Designs",
+            "description": "Unique cakes for every occasion"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🚚",
+            "title": "Same-day Delivery",
+            "description": "Fresh to your doorstep"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "💝",
+            "title": "Made with Love",
+            "description": "Personal care in every order"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,130 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Amore Cake",
+    "theme_version": "1.0.0",
+    "theme_author": "Amore Cake",
+    "theme_documentation_url": "https://help.shopify.com/en/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/en/manual/online-store/themes"
+  },
+  {
+    "name": "Branding",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "text",
+        "id": "logo_tagline",
+        "label": "Logo tagline",
+        "default": "Artisan Bakery"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#c9536a"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary / blush color",
+        "default": "#f9e4e9"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Page background",
+        "default": "#fdf6f0"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Body text color",
+        "default": "#3a2d2d"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Heading font",
+        "default": "playfair_display_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Body font",
+        "default": "lato_n4"
+      }
+    ]
+  },
+  {
+    "name": "Navigation",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main navigation",
+        "default": "main-menu"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_announcement_bar",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement text",
+        "default": "🎂 Free delivery on orders above ₹999 · Order before 2pm for same-day delivery!"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "social_whatsapp",
+        "label": "WhatsApp URL"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  }
+]
