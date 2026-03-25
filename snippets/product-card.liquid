@@ -89,9 +89,11 @@
     {%- endif -%}
 
     <!-- Rating (static for demo; integrate with review app for live ratings) -->
-    <div class="product-card__rating" aria-label="4.9 out of 5 stars">
+    <div class="product-card__rating" aria-label="5 out of 5 stars">
       <span class="stars" aria-hidden="true">★★★★★</span>
-      <span class="rating-count">({{ product.metafields.reviews.rating_count | default: forloop.index | plus: 12 }})</span>
+      {%- if product.metafields.reviews.rating_count != blank -%}
+        <span class="rating-count">({{ product.metafields.reviews.rating_count }})</span>
+      {%- endif -%}
     </div>
 
     <!-- Footer: Price + Add -->
