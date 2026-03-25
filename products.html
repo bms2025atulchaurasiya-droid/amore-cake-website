@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cakes &amp; Treats – Amore Cake</title>
+  <meta name="description" content="Browse our full range of handcrafted cakes, cupcakes, and desserts. Order online for delivery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar">
+    🎂 Free delivery on orders above ₹999 &nbsp;|&nbsp; Use code <strong>AMORE10</strong> for 10% off your first order!
+  </div>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🍰</span>
+        <div class="logo-text">
+          <span class="logo-main">Amore</span>
+          <span class="logo-sub">CAKE</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html" class="active">Cakes &amp; Treats</a></li>
+          <li><a href="products.html#custom">Custom Orders</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-icon cart-toggle" id="cart-toggle" aria-label="Shopping cart">
+          🛒
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="btn-hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="btn-icon cart-close" id="cart-close" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p class="cart-empty">Your cart is empty 🍰</p>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₹0</span>
+      </div>
+      <p class="cart-note">Shipping calculated at checkout</p>
+      <a href="#" class="btn btn-primary btn-block">Proceed to Checkout</a>
+    </div>
+  </aside>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag light">Our Menu</span>
+      <h1>Cakes &amp; Treats</h1>
+      <p>Discover our handcrafted collection — baked fresh daily with love.</p>
+    </div>
+  </section>
+
+  <!-- ===== SHOP TOOLBAR ===== -->
+  <section class="shop-toolbar">
+    <div class="container toolbar-inner">
+      <!-- Category Filters -->
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="birthday">Birthday</button>
+        <button class="filter-tab" data-filter="wedding">Wedding</button>
+        <button class="filter-tab" data-filter="cupcakes">Cupcakes</button>
+        <button class="filter-tab" data-filter="pastries">Pastries</button>
+        <button class="filter-tab" data-filter="vegan">Vegan</button>
+      </div>
+      <!-- Sort -->
+      <div class="sort-control">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS GRID ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="products-grid" id="products-grid">
+        <!-- Dynamically rendered by JS -->
+      </div>
+      <p class="no-results" id="no-results" style="display:none">No products found for this category.</p>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOM ORDER ===== -->
+  <section class="section custom-order-section" id="custom">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Bespoke</span>
+        <h2>Custom Cake Order</h2>
+        <p>Tell us your vision and we'll create something extraordinary.</p>
+      </div>
+      <form class="custom-order-form" id="custom-order-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="co-name">Your Name *</label>
+            <input type="text" id="co-name" name="name" placeholder="Priya Sharma" required />
+          </div>
+          <div class="form-group">
+            <label for="co-phone">Phone Number *</label>
+            <input type="tel" id="co-phone" name="phone" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label for="co-occasion">Occasion *</label>
+            <select id="co-occasion" name="occasion" required>
+              <option value="">Select occasion</option>
+              <option>Birthday</option>
+              <option>Wedding</option>
+              <option>Anniversary</option>
+              <option>Baby Shower</option>
+              <option>Graduation</option>
+              <option>Corporate Event</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="co-date">Required By *</label>
+            <input type="date" id="co-date" name="date" required />
+          </div>
+          <div class="form-group">
+            <label for="co-flavour">Preferred Flavour</label>
+            <select id="co-flavour" name="flavour">
+              <option value="">Select flavour</option>
+              <option>Chocolate</option>
+              <option>Vanilla</option>
+              <option>Red Velvet</option>
+              <option>Strawberry</option>
+              <option>Butterscotch</option>
+              <option>Lemon</option>
+              <option>Black Forest</option>
+              <option>Other / Surprise Me!</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="co-serves">Serves (approx.)</label>
+            <select id="co-serves" name="serves">
+              <option value="">Select size</option>
+              <option>8–10 people (500g)</option>
+              <option>12–15 people (1kg)</option>
+              <option>20–25 people (2kg)</option>
+              <option>30–40 people (3kg)</option>
+              <option>50+ people (custom)</option>
+            </select>
+          </div>
+          <div class="form-group form-group--full">
+            <label for="co-message">Design / Special Instructions</label>
+            <textarea id="co-message" name="message" rows="4" placeholder="Describe your dream cake – theme, colours, text, special requirements…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Submit Custom Order Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== TOAST NOTIFICATION ===== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">🍰</span>
+          <div class="logo-text">
+            <span class="logo-main">Amore</span>
+            <span class="logo-sub">CAKE</span>
+          </div>
+        </a>
+        <p>Artisan cakes &amp; pastries crafted with love for every occasion.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram" class="social-link">📸</a>
+          <a href="#" aria-label="Facebook" class="social-link">📘</a>
+          <a href="#" aria-label="WhatsApp" class="social-link">💬</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Cakes &amp; Treats</a></li>
+          <li><a href="products.html#custom">Custom Orders</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Returns &amp; Refunds</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <ul>
+          <li>📍 12, Baker Street, Pune – 411001</li>
+          <li>📞 <a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>✉️ <a href="mailto:hello@amorecake.in">hello@amorecake.in</a></li>
+          <li>🕐 Mon–Sat: 9am – 8pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Amore Cake. All rights reserved. Made with ❤️ for sweet moments.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

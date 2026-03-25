@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – Amore Cake</title>
+  <meta name="description" content="Meet the passionate team behind Amore Cake. Our story, values, and how to reach us." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar">
+    🎂 Free delivery on orders above ₹999 &nbsp;|&nbsp; Use code <strong>AMORE10</strong> for 10% off your first order!
+  </div>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🍰</span>
+        <div class="logo-text">
+          <span class="logo-main">Amore</span>
+          <span class="logo-sub">CAKE</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Cakes &amp; Treats</a></li>
+          <li><a href="products.html#custom">Custom Orders</a></li>
+          <li><a href="about.html" class="active">About Us</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-icon cart-toggle" id="cart-toggle" aria-label="Shopping cart">
+          🛒
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="btn-hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="btn-icon cart-close" id="cart-close" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <p class="cart-empty">Your cart is empty 🍰</p>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₹0</span>
+      </div>
+      <p class="cart-note">Shipping calculated at checkout</p>
+      <a href="#" class="btn btn-primary btn-block">Proceed to Checkout</a>
+    </div>
+  </aside>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag light">Our Story</span>
+      <h1>About Amore Cake</h1>
+      <p>A small bakery with a big heart, serving sweet memories since 2018.</p>
+    </div>
+  </section>
+
+  <!-- ===== OUR STORY ===== -->
+  <section class="section about-story">
+    <div class="container about-story-inner">
+      <div class="about-story-img">
+        <div class="story-visual">
+          <div class="story-cake-stack">
+            <div class="s-tier s3"></div>
+            <div class="s-tier s2"></div>
+            <div class="s-tier s1"></div>
+            <div class="s-topper">🌹</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-story-text">
+        <span class="section-tag">Our Story</span>
+        <h2>From a Home Kitchen to Your Heart</h2>
+        <p>Amore Cake started in 2018 in a small home kitchen in Pune. What began as weekend baking for friends and family quickly turned into a labour of love — driven by the joy that a perfect cake can bring to any occasion.</p>
+        <p>The word <em>Amore</em> means love in Italian, and that is exactly what goes into every creation we make. From selecting the freshest ingredients to hand-painting each detail, every cake is a work of edible art.</p>
+        <p>Today, Amore Cake serves hundreds of happy customers across Pune, creating memories one slice at a time.</p>
+        <div class="story-stats">
+          <div class="s-stat"><strong>2018</strong><span>Founded</span></div>
+          <div class="s-stat"><strong>500+</strong><span>Customers</span></div>
+          <div class="s-stat"><strong>50+</strong><span>Varieties</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section class="section team-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Meet the Bakers</span>
+        <h2>The People Behind the Magic</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar avatar-1">S</div>
+          <h3>Sneha Kulkarni</h3>
+          <span class="team-role">Founder &amp; Head Baker</span>
+          <p>Trained in Paris and Mumbai, Sneha brings 10+ years of pastry expertise to every cake she creates.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar avatar-2">M</div>
+          <h3>Meera Desai</h3>
+          <span class="team-role">Cake Artist</span>
+          <p>Meera's talent for hand-painting and sugar flowers transforms each cake into a breathtaking centrepiece.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar avatar-3">R</div>
+          <h3>Rohan Patil</h3>
+          <span class="team-role">Flavour Specialist</span>
+          <p>Rohan experiments tirelessly in the kitchen, crafting the unique flavour combinations our customers love.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag light">What We Believe</span>
+        <h2>Our Values</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-num">01</div>
+          <h3>Quality Without Compromise</h3>
+          <p>We use only premium, fresh ingredients — no artificial preservatives, no shortcuts.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02</div>
+          <h3>Sustainability</h3>
+          <p>We source locally, use eco-friendly packaging, and minimise food waste in everything we do.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03</div>
+          <h3>Community First</h3>
+          <p>As a local business, we believe in giving back — donating surplus bakes to shelters each week.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">04</div>
+          <h3>Joy in Every Bite</h3>
+          <p>Every creation is made to create a moment of pure happiness. That is our ultimate goal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h2>We'd Love to Hear from You</h2>
+        <p>Have a question, want to place a custom order, or just want to say hi? Reach out!</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Visit Us</h4>
+              <p>12, Baker Street<br />Pune – 411001, Maharashtra</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h4>Call / WhatsApp</h4>
+              <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:hello@amorecake.in">hello@amorecake.in</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <h4>Opening Hours</h4>
+              <p>Monday – Saturday: 9am – 8pm<br />Sunday: 10am – 5pm</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="cf-name">Full Name *</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email Address *</label>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="How can we help?" />
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message *</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Write your message here…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TOAST NOTIFICATION ===== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">🍰</span>
+          <div class="logo-text">
+            <span class="logo-main">Amore</span>
+            <span class="logo-sub">CAKE</span>
+          </div>
+        </a>
+        <p>Artisan cakes &amp; pastries crafted with love for every occasion.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram" class="social-link">📸</a>
+          <a href="#" aria-label="Facebook" class="social-link">📘</a>
+          <a href="#" aria-label="WhatsApp" class="social-link">💬</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Cakes &amp; Treats</a></li>
+          <li><a href="products.html#custom">Custom Orders</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Returns &amp; Refunds</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <ul>
+          <li>📍 12, Baker Street, Pune – 411001</li>
+          <li>📞 <a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>✉️ <a href="mailto:hello@amorecake.in">hello@amorecake.in</a></li>
+          <li>🕐 Mon–Sat: 9am – 8pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Amore Cake. All rights reserved. Made with ❤️ for sweet moments.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
