@@ -1,0 +1,207 @@
+{%- assign product = product -%}
+
+<div class="product-page">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span class="breadcrumb__sep" aria-hidden="true">›</span>
+      {%- if collection -%}
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+        <span class="breadcrumb__sep" aria-hidden="true">›</span>
+      {%- else -%}
+        <a href="{{ routes.collections_url }}">Cakes</a>
+        <span class="breadcrumb__sep" aria-hidden="true">›</span>
+      {%- endif -%}
+      <span class="breadcrumb__current" aria-current="page">{{ product.title }}</span>
+    </nav>
+
+    <div class="product-page__inner">
+
+      <!-- Gallery -->
+      <div class="product-gallery">
+        <div class="product-gallery__main" id="product-main-image">
+          {%- if product.featured_image != blank -%}
+            <img
+              id="main-product-img"
+              src="{{ product.featured_image | image_url: width: 800 }}"
+              alt="{{ product.featured_image.alt | default: product.title }}"
+              width="800"
+              height="800"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <img
+              id="main-product-img"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Crect fill='%23f9e4e9' width='800' height='800'/%3E%3Ctext fill='%23c9536a' font-family='serif' font-size='150' text-anchor='middle' x='400' y='450'%3E🎂%3C/text%3E%3C/svg%3E"
+              alt="{{ product.title }}"
+              width="800"
+              height="800"
+            >
+          {%- endif -%}
+        </div>
+
+        {%- if product.images.size > 1 -%}
+          <div class="product-gallery__thumbs" role="list" aria-label="Product images">
+            {%- for image in product.images limit: 4 -%}
+              <button
+                class="product-gallery__thumb{% if forloop.first %} active{% endif %}"
+                data-src="{{ image | image_url: width: 800 }}"
+                aria-label="View image {{ forloop.index }}"
+                role="listitem"
+              >
+                <img
+                  src="{{ image | image_url: width: 200 }}"
+                  alt="{{ image.alt | default: product.title }}"
+                  width="200"
+                  height="200"
+                  loading="lazy"
+                >
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Details -->
+      <div class="product-details">
+        <p class="product-vendor">{{ product.vendor | default: 'Amore Cake' }}</p>
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        <div class="product-rating" aria-label="4.9 out of 5 stars">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="review-count">4.9 ({{ product.metafields.reviews.rating_count | default: '48' }} reviews)</span>
+        </div>
+
+        <!-- Price -->
+        <div class="product-price-wrapper">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="product-price">{{ product.price | money }}</span>
+            <span class="product-compare-price">{{ product.compare_at_price | money }}</span>
+            <p class="product-savings">
+              You save {{ product.compare_at_price | minus: product.price | money }}
+              ({{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% off)
+            </p>
+          {%- else -%}
+            <span class="product-price">{{ product.price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        <!-- Description -->
+        {%- if product.description != blank -%}
+          <div class="product-description">{{ product.description }}</div>
+        {%- endif -%}
+
+        <!-- Variant / Size options -->
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="product-option">
+              <p class="product-option__label">{{ option.name }}</p>
+              <div class="size-options" role="group" aria-label="{{ option.name }} options">
+                {%- for value in option.values -%}
+                  <button
+                    type="button"
+                    class="size-btn{% if forloop.first %} selected{% endif %}"
+                    data-option="{{ option.name | handleize }}"
+                    data-value="{{ value }}"
+                    aria-pressed="{{ forloop.first }}"
+                  >{{ value }}</button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <!-- Quantity -->
+        <div class="product-option">
+          <p class="product-option__label">Quantity</p>
+          <div class="quantity-selector" role="group" aria-label="Quantity">
+            <button class="qty-btn" data-action="minus" aria-label="Decrease quantity">−</button>
+            <input
+              class="qty-input"
+              type="number"
+              name="quantity"
+              id="quantity"
+              value="1"
+              min="1"
+              max="99"
+              aria-label="Quantity"
+            >
+            <button class="qty-btn" data-action="plus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <div class="product-actions">
+          {%- form 'product', product -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1" id="qty-hidden">
+            <button
+              type="submit"
+              class="btn btn--primary btn--full btn--lg"
+              data-action="add-to-cart"
+              {%- unless product.available %} disabled{%- endunless -%}
+            >
+              {%- if product.available -%}
+                🛒 Add to Cart
+              {%- else -%}
+                Sold Out
+              {%- endif -%}
+            </button>
+          {%- endform -%}
+          <button type="button" class="btn btn--outline btn--full" data-action="wishlist" aria-label="Add to wishlist">
+            ♡ Add to Wishlist
+          </button>
+        </div>
+
+        <!-- Product Meta -->
+        <div class="product-meta">
+          {%- if product.type != blank -%}
+            <div class="product-meta-item">
+              <span class="product-meta-label">Category:</span>
+              <span class="product-meta-value">{{ product.type }}</span>
+            </div>
+          {%- endif -%}
+          {%- if product.vendor != blank -%}
+            <div class="product-meta-item">
+              <span class="product-meta-label">Baker:</span>
+              <span class="product-meta-value">{{ product.vendor }}</span>
+            </div>
+          {%- endif -%}
+          {%- if product.tags.size > 0 -%}
+            <div class="product-meta-item">
+              <span class="product-meta-label">Tags:</span>
+              <span class="product-meta-value">{{ product.tags | join: ', ' }}</span>
+            </div>
+          {%- endif -%}
+          <div class="product-meta-item">
+            <span class="product-meta-label">Availability:</span>
+            <span class="product-meta-value" style="color:{% if product.available %}var(--color-success){% else %}var(--color-error){% endif %};">
+              {%- if product.available -%}In Stock{%- else -%}Out of Stock{%- endif -%}
+            </span>
+          </div>
+        </div>
+
+        <!-- Delivery / Trust info -->
+        <div style="background:var(--color-cream);border-radius:var(--border-radius);padding:1.25rem;margin-top:1.5rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;">
+            <span style="font-size:1.1rem;">🚚</span>
+            <span><strong>Same-day Delivery</strong> available for orders before 2pm</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;">
+            <span style="font-size:1.1rem;">🌿</span>
+            <span><strong>100% Fresh</strong> — baked to order, no preservatives</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;">
+            <span style="font-size:1.1rem;">🎂</span>
+            <span><strong>Custom message</strong> written in icing at no extra charge</span>
+          </div>
+        </div>
+
+      </div><!-- /.product-details -->
+    </div><!-- /.product-page__inner -->
+
+  </div><!-- /.container -->
+</div><!-- /.product-page -->

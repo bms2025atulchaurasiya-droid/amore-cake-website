@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#c9536a">
+  <title>
+    {%- if page_title == blank -%}
+      {{ shop.name }}
+    {%- else -%}
+      {{ page_title }} – {{ shop.name }}
+    {%- endif -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:title" content="{{ page_title | default: shop.name }}">
+  {%- if page_description -%}
+    <meta property="og:description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  {%- if page_image -%}
+    <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+  {%- endif -%}
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <!-- Fonts (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  <!-- Content for head section -->
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ template.name | handle }}">
+
+  <!-- Announcement Bar -->
+  {%- if settings.show_announcement_bar and settings.announcement_text != blank -%}
+    <div class="announcement-bar" role="region" aria-label="Announcement">
+      <span>{{ settings.announcement_text }}</span>
+      <button class="announcement-bar__close" aria-label="Close announcement" style="
+        background:none;border:none;color:white;cursor:pointer;
+        margin-left:1rem;font-size:1rem;line-height:1;padding:0;opacity:0.8;">✕</button>
+    </div>
+  {%- endif -%}
+
+  <!-- Header -->
+  {%- section 'header' -%}
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    {%- for link in linklists[settings.main_menu].links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+    <div style="margin-top:1rem;">
+      <a href="{{ routes.cart_url }}" class="btn btn--primary btn--full">🛒 View Cart ({{ cart.item_count }})</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="MainContent" class="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- Footer -->
+  {%- section 'footer' -%}
+
+  <!-- Theme JS -->
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+</body>
+</html>

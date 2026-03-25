@@ -1,0 +1,12 @@
+{
+  "current": {
+    "logo_tagline": "Artisan Bakery",
+    "show_announcement_bar": true,
+    "announcement_text": "🎂 Free delivery on orders above ₹999 · Order before 2pm for same-day delivery!",
+    "main_menu": "main-menu",
+    "color_primary": "#c9536a",
+    "color_secondary": "#f9e4e9",
+    "color_background": "#fdf6f0",
+    "color_text": "#3a2d2d"
+  }
+}

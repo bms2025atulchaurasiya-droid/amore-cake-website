@@ -1,0 +1,194 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "badge_text": "Artisan Cakes · Made Fresh Daily",
+        "heading": "Every Celebration Deserves a [highlight]Perfect Cake[/highlight]",
+        "subheading": "Handcrafted with premium ingredients and endless love. From birthdays to weddings, we make every moment sweeter.",
+        "cta_primary_label": "Order Now",
+        "cta_secondary_label": "Custom Cake",
+        "show_stats": true,
+        "stat_1_number": "500+",
+        "stat_1_label": "Happy Clients",
+        "stat_2_number": "50+",
+        "stat_2_label": "Cake Designs",
+        "stat_3_number": "5★",
+        "stat_3_label": "Avg. Rating",
+        "show_floating_cards": true
+      }
+    },
+    "why-choose-us": {
+      "type": "why-choose-us",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎂",
+            "title": "100% Handcrafted",
+            "description": "Every cake is made by hand with care and attention to detail."
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌿",
+            "title": "Fresh Ingredients",
+            "description": "We use only the freshest, highest-quality ingredients with no artificial preservatives."
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "Custom Designs",
+            "description": "Tell us your vision and we'll bring it to life in a stunning edible masterpiece."
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🚚",
+            "title": "Same-Day Delivery",
+            "description": "Fresh cakes delivered to your doorstep on the same day."
+          }
+        },
+        "feature-5": {
+          "type": "feature",
+          "settings": {
+            "icon": "💯",
+            "title": "Satisfaction Guaranteed",
+            "description": "We stand behind every cake we make. Your happiness is our priority."
+          }
+        },
+        "feature-6": {
+          "type": "feature",
+          "settings": {
+            "icon": "🏆",
+            "title": "Award-Winning",
+            "description": "Recognised for excellence in baking and design by local food guides."
+          }
+        }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4", "feature-5", "feature-6"],
+      "settings": {
+        "subtitle": "The Amore Difference",
+        "heading": "Why Choose Amore Cake?"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "subtitle": "Fresh From the Oven",
+        "heading": "Our Bestsellers",
+        "subheading": "Explore our most-loved cakes, baked fresh every day with premium ingredients.",
+        "product_limit": 4,
+        "show_view_all": true,
+        "view_all_label": "View All Cakes"
+      }
+    },
+    "about-us": {
+      "type": "about-us",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌿",
+            "title": "Natural Ingredients",
+            "description": "No artificial flavours or preservatives"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "Custom Designs",
+            "description": "Unique cakes for every occasion"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🚚",
+            "title": "Same-day Delivery",
+            "description": "Fresh to your doorstep"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "💝",
+            "title": "Made with Love",
+            "description": "Personal care in every order"
+          }
+        }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"],
+      "settings": {
+        "subtitle": "Our Story",
+        "heading": "Baked with Love Since 2019",
+        "show_experience_badge": true,
+        "years_experience": "5",
+        "cta_label": "Learn More About Us"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "review-1": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Priya Sharma",
+            "event": "Birthday Party",
+            "review": "The cake was absolutely stunning and delicious! Everyone at the party was asking where we got it from. Amore Cake never disappoints!",
+            "rating": 5
+          }
+        },
+        "review-2": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Rahul & Neha",
+            "event": "Wedding Cake",
+            "review": "We ordered our wedding cake from Amore and it was beyond our expectations. Beautiful design, incredible taste. Our guests were in awe!",
+            "rating": 5
+          }
+        },
+        "review-3": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Anjali Gupta",
+            "event": "Custom Order",
+            "review": "Ordered a custom photo cake for my mom's 60th birthday. The attention to detail was amazing and it tasted divine. Will definitely order again!",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": ["review-1", "review-2", "review-3"],
+      "settings": {
+        "subtitle": "Customer Love",
+        "heading": "What Our Customers Say",
+        "subheading": "Real reviews from real customers who trusted us with their special moments.",
+        "show_trust_bar": true,
+        "total_reviews": "200+",
+        "total_orders": "1000+"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subtitle": "Stay Updated",
+        "heading": "Get Sweet Deals in Your Inbox",
+        "description": "Subscribe to our newsletter for exclusive offers, new cake designs and seasonal specials.",
+        "button_label": "Subscribe"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why-choose-us",
+    "featured-collection",
+    "about-us",
+    "testimonials",
+    "newsletter"
+  ]
+}
